@@ -1,20 +1,11 @@
 #include <bits/stdc++.h>
 
-namespace CP {
-    template <typename T1, typename T2> class pair {
-        public:
-            T1 first;
-            T2 second;
-        private:
-
-    };
-}
-
+using namespace std;
 
 int main() {
-    CP::pair<float, int> a;
-    a.first = 1.1;
-    a.second = 2;
-
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    
+  
     return 0;
 }
