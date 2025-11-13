@@ -36,8 +36,21 @@ public:
     }
     bool isSameBinaryTree(Tree& t) {
         // Insert your code here
+        return recurr(mRoot, t.mRoot);
+
     }
     // You can also put your code here
+    bool recurr(Node *a, Node *b) {
+        if (a == nullptr && b == nullptr) {
+            return true;
+        }
+
+        if (a == nullptr || b == nullptr) {
+            return false;
+        }
+
+        return (a->data == b->data) && recurr(a->left, b->left) && recurr(a->right, b->right);
+    }
 
 protected:
     void insertAt(Node*& r, int x) {
