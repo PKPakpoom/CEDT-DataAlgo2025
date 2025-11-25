@@ -17,11 +17,22 @@ int main() {
         rule[i] = make_pair(a, b);
     }
 
-
-    // for (auto s : perm) {
-    //     cout << s << '\n';
-    // }
+    vector<int> v;
+    for (size_t i = 0; i < n; ++i) {
+        v.push_back(i);
+    }
     
+    do {
+        bool skip = false;
+        for (auto r : rule) {
+            if (find(v.begin(), v.end(), r.first) > find(v.begin(), v.end(), r.second)) {
+                skip = true;
+            }
+        }
+        if (skip) continue;
+        for (auto e : v) cout << e << ' ';
+        cout << '\n';
+    } while (next_permutation(v.begin(), v.end()));
   
     return 0;
 }
