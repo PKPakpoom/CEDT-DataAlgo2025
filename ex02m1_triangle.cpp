@@ -4,29 +4,6 @@ using namespace std;
 
 
 vector<vector<int>> arr;
-// int maximum = 0;
-
-int recur(int i, int j, int val) {
-    if (i == 0 && j == 0) {
-        return val;
-    }
-
-    if (i < 0 || j > i || j < 0) {
-        return INT_MIN;
-    }
-
-    int l = INT_MIN;
-    if (j > 0) {
-        l = recur(i - 1, j - 1, val + arr[i - 1][j - 1]);
-    }
-    
-    int r = INT_MIN;
-    if (j <= i - 1) { 
-        r = recur(i - 1, j, val + arr[i - 1][j]);
-    }
-
-    return max(l, r);
-}
 
 
 int main() {
@@ -44,17 +21,36 @@ int main() {
         }
     }
 
-    // cout << recur(n-1, 0, 0) << '\n';
-    // cout << maximum << '\n';
-
-    int maximum = 0;
-    for (int i = 0; i < n; ++i) {
-        maximum = max(maximum, recur(n-1, i, arr[n-1][i]));
-        // cout << maximum << '\n';
+    for (int i = 1; i < n; ++i) {
+        for (int j = 0; j < i + 1; ++j) {
+            int l = 0;
+            int r = 0;
+            if (j - 1 >= 0) {
+                l = arr[i-1][j-1];
+            }
+            if (i != j) {
+                r = arr[i-1][j];
+            }
+            int cur = arr[i][j];
+            arr[i][j] = max(cur + l, cur + r);
+            // cout << i << ' ' << j << '\n';
+            // cout << arr[i][j] << '\n';
+        }
     }
 
+
+
+    int maximum = 0;
+    // for (auto e : arr) {
+    //     for (auto f : e) {
+    //         cout << f << ' ';
+    //     }
+    //     cout << '\n';
+    // }
+    for (auto e : arr[n-1]) {
+        maximum = max(maximum, e);
+    }
     cout << maximum << '\n';
 
-  
     return 0;
 }
